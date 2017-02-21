@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ ! -d "~/.oh-my-zsh/" ]; then
-    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
 
 if [ ! -d "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 fi
 
 pip install --upgrade pip
@@ -18,8 +18,8 @@ if [ ! -f "~/.zshrc" ]; then
     sed -i "s:PIP_REPO_ROOT:$POWERLINE_LOCATION:g" ~/.zshrc
 fi
 
-mkdir -p .logs/
-mkdir -p .config/
+mkdir -p ~/.logs/
+mkdir -p ~/.config/
 
 cp -R powerline/ ~/.config/powerline
 
