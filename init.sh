@@ -10,6 +10,7 @@ fi
 
 pip install --upgrade pip
 pip install --user powerline-status
+pip install --user powerline-gitstatus
 
 if [ ! -f "~/.zshrc" ]; then
     cp .zshrc ~/.zshrc
