@@ -3,7 +3,6 @@
         "hostname": {
             "args": {
                 "only_if_ssh": false
-
             }
         },
         "cwd": {
