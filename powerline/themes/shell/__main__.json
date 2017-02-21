@@ -1,0 +1,20 @@
+{
+    "segment_data": {
+        "hostname": {
+                        "args": {
+                                "only_if_ssh": false
+
+                        }
+                },
+                "cwd": {
+                        "args": {
+                                "dir_limit_depth": 0
+                        }
+                },
+        "powerline.segments.common.vcs.branch": {
+            "args": {
+                "status_colors": true
+            }
+        }
+    }
+}
