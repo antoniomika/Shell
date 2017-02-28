@@ -1,0 +1,5 @@
+#!/usr/bin/env php
+<?php
+require('HOME/.composer/vendor/autoload.php');
+require_once('/repo/notion-cloud/cli/init.php');
+call_user_func(\Psy\bin());

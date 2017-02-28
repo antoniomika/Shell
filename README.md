@@ -19,7 +19,7 @@ Shell
     5. For both `Font` and `Non-ASCII Font`, select Source Code Pro For Powerline Regular (or your font).
     7. The command line should be prettier.
 6. If you don't like it, everything is installed locally. You can remove the folders and you're set
-    - `rm -rf ~/.config/powerline ~/.logs ~/.oh-my-zsh ~/Shell ~/.zsh_history ~/.zshrc ~/.zsh-update ~/.zcompdump* ~/.z && pip uninstall powerline-status && exit`
+    - `rm -rf ~/.config/powerline ~/.logs ~/.oh-my-zsh ~/Shell ~/.zsh_history ~/.zshrc ~/.zsh-update ~/.zcompdump* ~/.z /usr/local/bin/notion && pip uninstall powerline-status && exit`
 7. If you do like it, change your shell!
     - `chsh -s /bin/zsh`
 
