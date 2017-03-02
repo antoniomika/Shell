@@ -28,5 +28,5 @@ if grep -q '^vagrant:' /etc/passwd; then
     composer g require psy/psysh:@stable
     cp misc/notion /usr/local/bin/notion
 
-    sed -i "s/HOME/$HOME/g" /usr/local/bin/notion
+    sed -i "s:HOME:$HOME:g" /usr/local/bin/notion
 fi

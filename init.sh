@@ -39,9 +39,9 @@ if [ ! -f "~/.zshrc" ]; then
     POWERLINE_LOCATION=$(pip show powerline-status | grep -i "Location: " | awk '{print $2}')
 
     if [[ "$unamestr" == 'Linux' ]]; then
-        sed -i "s/PIP_REPO_ROOT/$POWERLINE_LOCATION/g" ~/.zshrc
+        sed -i "s:PIP_REPO_ROOT:$POWERLINE_LOCATION:g" ~/.zshrc
     elif [[ "$unamestr" == 'Darwin' ]]; then
-        sed -i .bak "s/PIP_REPO_ROOT/$POWERLINE_LOCATION/g" ~/.zshrc
+        sed -i .bak "s:PIP_REPO_ROOT:$POWERLINE_LOCATION:g" ~/.zshrc
     fi
 fi
 
