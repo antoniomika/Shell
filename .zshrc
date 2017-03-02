@@ -98,6 +98,10 @@ if [ -d ~/.local/bin ]; then
     export PATH=~/.local/bin:$PATH
 fi
 
+if [ -d ~/Library/Python/2.7/bin ]; then
+    export PATH=~/Library/Python/2.7/bin:$PATH
+fi
+
 # Powerline
 powerline-daemon -q
 source PIP_REPO_ROOT/powerline/bindings/zsh/powerline.zsh
