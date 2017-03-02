@@ -1,5 +1,25 @@
 #!/bin/sh
 
+# Get the platform
+unamestr=`uname`
+
+# Dependency checks
+if ! which python > /dev/null; then
+    echo 'ERROR: Python is required. Please install and try again'
+    exit 1
+else
+    if ! which pip > /dev/null; then
+        echo 'ERROR: pip is required. Installing now'
+        sudo easy_install pip
+    fi
+fi
+
+if ! which git > /dev/null; then
+    echo 'ERROR: Git is required. Please install and try again'
+    exit 1
+fi
+
+# Get oh-my-zsh and zsh syntax highlighting
 if [ ! -d "~/.oh-my-zsh/" ]; then
     git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
@@ -8,43 +28,29 @@ if [ ! -d "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 fi
 
+# Install powerline
 pip install --upgrade pip
 pip install --user powerline-status
 pip install --user powerline-gitstatus
 
+# Setup zshrc
 if [ ! -f "~/.zshrc" ]; then
     cp .zshrc ~/.zshrc
     POWERLINE_LOCATION=$(pip show powerline-status | grep -i "Location: " | awk '{print $2}')
 
-    sed -i "s:PIP_REPO_ROOT:$POWERLINE_LOCATION:g" ~/.zshrc
+    if [[ "$unamestr" == 'Linux' ]]; then
+        sed -i "s:PIP_REPO_ROOT:$POWERLINE_LOCATION:g" ~/.zshrc
+    elif [[ "$unamestr" == 'Darwin' ]]; then
+        sed -i '' "s:PIP_REPO_ROOT:$POWERLINE_LOCATION:g" ~/.zshrc
+    fi
 fi
 
+# Setup the necessary configs
 mkdir -p ~/.logs/
 mkdir -p ~/.config/
 
-cp misc/notion /usr/local/bin/notion
-sed -i "s:HOME:$HOME:g" /usr/local/bin/notion
-
-if ! which composer > /dev/null; then
-    EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
-
-    if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
-    then
-        >&2 echo 'ERROR: Invalid installer signature'
-        rm composer-setup.php
-        exit 1
-    fi
-
-    php composer-setup.php --quiet
-    rm composer-setup.php
-
-    mv composer.phar /usr/local/bin/composer
+if [ ! -d "~/.config/powerline" ]; then
+    cp -R powerline/ ~/.config/powerline
 fi
-
-composer g require psy/psysh:@stable
-
-cp -R powerline/ ~/.config/powerline
 
 echo "All set! To finish install, run 'chsh -s /bin/zsh'!"
