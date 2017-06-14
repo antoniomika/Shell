@@ -86,6 +86,9 @@ source $ZSH/oh-my-zsh.sh
 
 # My configs
 
+export LANG=en_US.utf8
+export LC_CTYPE=en_US.UTF-8
+
 # Logging
 LOGGING_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(fc -ln -1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
 precmd() { eval "$LOGGING_COMMAND" }
