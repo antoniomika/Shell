@@ -30,6 +30,7 @@ fi
 
 # Install powerline
 pip install --upgrade pip
+pip install --user psutil
 pip install --user powerline-status
 pip install --user powerline-gitstatus
 
